@@ -77,6 +77,12 @@ bool EventCategorizer::init() {
       193, -0.5, 192.5));
     getStatistics().getHisto1D("ScinID")->GetXaxis()->SetTitle("Scintillator ID");
     getStatistics().getHisto1D("ScinID")->GetYaxis()->SetTitle("Counts");
+ 
+    getStatistics().createHistogram(new TH1F("ScinID_Check", "Scintillator ID Distribution",
+      193, -0.5, 192.5));
+    getStatistics().getHisto1D("ScinID_Check")->GetXaxis()->SetTitle("Scintillator ID");
+    getStatistics().getHisto1D("ScinID_Check")->GetYaxis()->SetTitle("Counts");
+
 
     getStatistics().createHistogram(new TH1F("ScinID_Replica", "ScinID_Replica",
       11, -0.5, 10.5));
@@ -87,6 +93,26 @@ bool EventCategorizer::init() {
       11, -0.5, 10.5));
     getStatistics().getHisto1D("ScinID_Replica_Cut")->GetXaxis()->SetTitle("ScinID_Replica_Cut");
     getStatistics().getHisto1D("ScinID_Replica_Cut")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_all", "#Delta_{ij} - All",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_all")->GetXaxis()->SetTitle("#Delta_{ij} - All [ns]");
+    getStatistics().getHisto1D("Delta_ij_all")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_least", "#Delta_{ij} - Least",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_least")->GetXaxis()->SetTitle("#Delta_{ij} - Least [ns]");
+    getStatistics().getHisto1D("Delta_ij_least")->GetYaxis()->SetTitle("Counts");
+
+
+
+
+
+
+
+
+
 
     getStatistics().createHistogram(new TH1F("DistancefromSurface", "DistancefromSurface",
       510, -0.5, 50.5));
@@ -189,6 +215,76 @@ bool EventCategorizer::init() {
     getStatistics().getHisto2D("Angle3D_Check6")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
 
 
+    getStatistics().createHistogram(new TH1F("LifeTime_Check7", "LifeTime_Check7", 40100, -200.5, 200.5));
+    getStatistics().getHisto1D("LifeTime_Check7")->SetXTitle("LifeTime_Check7 [ns]");
+    getStatistics().getHisto1D("LifeTime_Check7")->SetYTitle("Counts");
+    
+    getStatistics().createHistogram(new TH2F("Angle3D_Check7", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().getHisto2D("Angle3D_Check7")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
+    getStatistics().getHisto2D("Angle3D_Check7")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
+
+
+    getStatistics().createHistogram(new TH1F("LifeTime_Check8", "LifeTime_Check8", 40100, -200.5, 200.5));
+    getStatistics().getHisto1D("LifeTime_Check8")->SetXTitle("LifeTime_Check8 [ns]");
+    getStatistics().getHisto1D("LifeTime_Check8")->SetYTitle("Counts");
+    
+    getStatistics().createHistogram(new TH2F("Angle3D_Check8", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().getHisto2D("Angle3D_Check8")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
+    getStatistics().getHisto2D("Angle3D_Check8")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
+
+
+
+   getStatistics().createHistogram(new TH2F("Dalitz_Energy_12", "Dalitz_Energy_12", 1041, -0.5, 1040.5, 1041, -0.5, 1040.5));
+    getStatistics().getHisto2D("Dalitz_Energy_12")->GetXaxis()->SetTitle("Energy1");
+    getStatistics().getHisto2D("Dalitz_Energy_12")->GetYaxis()->SetTitle("Energy2");
+
+    getStatistics().createHistogram(new TH2F("Dalitz_Energy_23", "Dalitz_Energy_23", 1041, -0.5, 1040.5, 1041, -0.5, 1040.5));
+    getStatistics().getHisto2D("Dalitz_Energy_23")->GetXaxis()->SetTitle("Energy2");
+    getStatistics().getHisto2D("Dalitz_Energy_23")->GetYaxis()->SetTitle("Energy3");
+
+    getStatistics().createHistogram(new TH2F("Dalitz_Energy_31", "Dalitz_Energy_31", 1041, -0.5, 1040.5, 1041, -0.5, 1040.5));
+    getStatistics().getHisto2D("Dalitz_Energy_31")->GetXaxis()->SetTitle("Energy3");
+    getStatistics().getHisto2D("Dalitz_Energy_31")->GetYaxis()->SetTitle("Energy1");
+
+
+ getStatistics().createHistogram(new TH1F("Energy1", "Energy1",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy1")->GetXaxis()->SetTitle("Energy1 [keV]");
+    getStatistics().getHisto1D("Energy1")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("Energy2", "Energy2",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy2")->GetXaxis()->SetTitle("Energy2 [keV]");
+    getStatistics().getHisto1D("Energy2")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("Energy3", "Energy3",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy3")->GetXaxis()->SetTitle("Energy3 [keV]");
+    getStatistics().getHisto1D("Energy3")->GetYaxis()->SetTitle("Counts");
+
+
+
+ //Expectation Value
+
+    getStatistics().createHistogram(new TH1F("ExpecValue1", "ExpecValue1",
+      300, -1.5, 1.5));
+    getStatistics().getHisto1D("ExpecValue1")->GetXaxis()->SetTitle("ExpecValue1");
+    getStatistics().getHisto1D("ExpecValue1")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("ExpecValue2", "ExpecValue2",
+      300, -1.5, 1.5));
+    getStatistics().getHisto1D("ExpecValue2")->GetXaxis()->SetTitle("ExpecValue2");
+    getStatistics().getHisto1D("ExpecValue2")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("ExpecValue3", "ExpecValue3",
+      300, -1.5, 1.5));
+    getStatistics().getHisto1D("ExpecValue3")->GetXaxis()->SetTitle("ExpecValue3");
+    getStatistics().getHisto1D("ExpecValue3")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("ExpecValue", "ExpecValue",
+      300, -1.5, 1.5));
+    getStatistics().getHisto1D("ExpecValue")->GetXaxis()->SetTitle("ExpecValue");
+    getStatistics().getHisto1D("ExpecValue")->GetYaxis()->SetTitle("Counts");
 
 
 
@@ -199,113 +295,6 @@ bool EventCategorizer::init() {
   return true;
 }
 
-//TOT Calculation - Function (Sum over all thresholds)
-
-double CalcTOT(const JPetHit & Hit) {
-
-  double TOT = 0.;
-  double TOT_A = 0.;
-  double TOT_B = 0.;
-
-  auto lead_times_A = Hit.getSignalA().getRecoSignal().getRawSignal().getTimesVsThresholdNumber(JPetSigCh::Leading);
-  auto trail_times_A = Hit.getSignalA().getRecoSignal().getRawSignal().getTimesVsThresholdNumber(JPetSigCh::Trailing);
-  auto lead_times_B = Hit.getSignalB().getRecoSignal().getRawSignal().getTimesVsThresholdNumber(JPetSigCh::Leading);
-  auto trail_times_B = Hit.getSignalB().getRecoSignal().getRawSignal().getTimesVsThresholdNumber(JPetSigCh::Trailing);
-
-  for (auto & thr_time_pair: lead_times_A) {
-    int thr = thr_time_pair.first;
-    if (trail_times_A.count(thr) > 0) {
-      TOT_A = TOT_A + trail_times_A[thr] - lead_times_A[thr];
-    }
-  }
-
-  for (auto & thr_time_pair: lead_times_B) {
-    int thr = thr_time_pair.first;
-    if (trail_times_B.count(thr) > 0) {
-
-      TOT_B = TOT_B + trail_times_B[thr] - lead_times_B[thr];
-    }
-  }
-  TOT = (TOT_A + TOT_B) / 1000.;
-
-  return TOT;
-}
-
-//TOF Calculation - Function (From Center (0,0,0))
-
-double CalcTOF(const JPetHit & Hit, TVector3 Center) {
-
-  double Dist = sqrt(pow(Hit.getPosX() - Center.X(), 2) + pow(Hit.getPosY() - Center.Y(), 2) + pow(Hit.getPosZ() - Center.Z(), 2));
-
-  double CalTime = Dist / 29.979246; //velocity of light in cm/s, returns time in ns
-
-  double HitTime = Hit.getTime() / 1000.0;
-
-  double TOF = (HitTime - CalTime);
-
-  return TOF;
-
-}
-
-
-
-//3D-Angle Calculation - Function
-
-  double Calc3DAngle(const JPetHit & Hit1,
-  const JPetHit & Hit2 , TVector3 Center) {
-
-  double scalarProd = (Hit1.getPosX() - Center.X()) * (Hit2.getPosX() - Center.X()) + (Hit1.getPosY() - Center.Y()) * (Hit2.getPosY() - Center.Y()) + (Hit1.getPosZ() - Center.Z()) * (Hit2.getPosZ() - Center.Z());
-
-  double magProd = sqrt((pow(Hit1.getPosX() - Center.X(), 2) +
-      pow(Hit1.getPosY() - Center.Y(), 2) +
-      pow(Hit1.getPosZ() - Center.Z(), 2)) *
-    (pow(Hit2.getPosX() - Center.X(), 2) +
-      pow(Hit2.getPosY() - Center.Y(), 2) +
-      pow(Hit2.getPosZ() - Center.Z(), 2)));
-
-  double Angle = acos(scalarProd / magProd) * 180 / 3.14159;
-
-  return Angle;
-}
-
-
-
-//Calculate the distance of the Annihilation Surface to the center of the detector geometry
-
-double CalDistofSurface(const JPetHit Hit1,
-  const JPetHit Hit2,
-    const JPetHit Hit3, TVector3 Center)
-
-{
-
-  TVector3 vec1(Hit2.getPosX() - Hit1.getPosX(), Hit2.getPosY() - Hit1.getPosY(), Hit2.getPosZ() - Hit1.getPosZ());
-  TVector3 vec2(Hit3.getPosX() - Hit2.getPosX(), Hit3.getPosY() - Hit2.getPosY(), Hit3.getPosZ() - Hit2.getPosZ());
-  TVector3 crossProd = vec1.Cross(vec2);
-
-  double Dcoeef = -crossProd(0) * Hit2.getPosX() - crossProd(1) * Hit2.getPosY() - crossProd(2) * Hit2.getPosZ();
-
-  double distancefromZero = fabs(crossProd(0) * Center.X() + crossProd(1) * Center.Y() + crossProd(2) * Center.Z() + Dcoeef) / crossProd.Mag();
-  return distancefromZero;
-}
-
-
-
-//Calculation of the Scatter Test between Primary and Secondary hits
-
-double CalScatterTest(const JPetHit & Hit1,
-  const JPetHit & Hit2)
-
-{
-
-  double timeDiff = ((Hit2.getTime() / 1000.0) - (Hit1.getTime() / 1000.0));
-  float Dist = sqrt(pow(Hit2.getPosX() - Hit1.getPosX(), 2) +
-    pow(Hit2.getPosY() - Hit1.getPosY(), 2) +
-    pow(Hit2.getPosZ() - Hit1.getPosZ(), 2));
-  Dist = Dist / 29.979246;
-  double Scat = (timeDiff - Dist);
-  return Scat;
-
-}
 
 
 Bool_t comparison(const pair < double, JPetHit > & a,
@@ -343,7 +332,7 @@ bool EventCategorizer::exec() {
 
 
 	
-      if (event.getHits().size() >= 4) {
+      if (event.getHits().size() >= 5) {
  
       getStatistics().getHisto1D("Hits")->Fill(event.getHits().size()); 
 
@@ -358,7 +347,48 @@ bool EventCategorizer::exec() {
 	std::vector < JPetHit > DeexHits;
 	std::vector < JPetHit > ScatHits;
 
+
+
+	//Check for the duplicate ID's
+
+
+	std::vector < int > ID_vec;
+
+	for (auto i = hits.begin(); i != hits.end(); ++i) 
+	{
+		auto& hit1 = *i;
+        
+
+	 auto ID = hit1.getScintillator().getID();
+	 ID_vec.push_back( ID );
 	
+
+        getStatistics().getHisto1D("ScinID")->Fill(ID);
+
+
+	}
+
+	sort( ID_vec.begin(), ID_vec.end() );
+	
+	ID_vec.erase(unique(ID_vec.begin(), ID_vec.end()), ID_vec.end());
+
+	getStatistics().getHisto1D("ScinID_Replica")->Fill(ID_vec.size());
+
+
+
+
+
+	//No duplicate ID's only then enter 
+
+
+	if(ID_vec.size() == event.getHits().size())
+	{
+
+
+	getStatistics().getHisto1D("ScinID_Replica_Cut")->Fill(ID_vec.size());
+
+
+	//Z_Pos Check and Cut
 
 	for (auto i = hits.begin(); i != hits.end(); ++i) 
 	{
@@ -401,28 +431,13 @@ bool EventCategorizer::exec() {
 
 	}
 
-	//4 or more Hits
+	//5 or more Hits
 
 
-	if( DeexHits.size() == 1 && AnniHits.size() == 3)
+	if( DeexHits.size() == 1 && AnniHits.size() == 4)
 	{
 
 
-//Time Check 
-/*
-	int counter = 0;
-	
-	double t1 = AnniHits[0].getTime()/1000;
-	double t2 = AnniHits[1].getTime()/1000;
-	double t3 = AnniHits[2].getTime()/1000;
-
-
-	if((t1-t2) == 0 || (t1-t3) == 0 || (t2-t3) == 0)
-	counter++;
-
-	cout<<counter<<endl;
-
-*/
 
 //ID's of the 5-Hits
 
@@ -430,53 +445,85 @@ bool EventCategorizer::exec() {
           auto ID_Anni_1 = AnniHits[0].getScintillator().getID();
           auto ID_Anni_2 = AnniHits[1].getScintillator().getID();
           auto ID_Anni_3 = AnniHits[2].getScintillator().getID();
-	  
+	  auto ID_Anni_4 = AnniHits[3].getScintillator().getID();
 
 //Count Rate - ID's filling
 
-	  getStatistics().getHisto1D("ScinID")->Fill(ID_Deex);
-          getStatistics().getHisto1D("ScinID")->Fill(ID_Anni_1);
-          getStatistics().getHisto1D("ScinID")->Fill(ID_Anni_2);
-          getStatistics().getHisto1D("ScinID")->Fill(ID_Anni_3);
-          
-
-	  std::vector < double > ScinID;
-          ScinID.push_back(ID_Deex);
-          ScinID.push_back(ID_Anni_1);
-          ScinID.push_back(ID_Anni_2);
-          ScinID.push_back(ID_Anni_3);
-	  
-
-//Scintillator ID - Replica Test 
-
-          int k = 0;
-          int limit = ScinID.size();
-          for (int i = 0; i < limit; i++) {
-            for (int j = 0; j < limit; j++) {
-              if (i != j && ScinID[i] == ScinID[j])
-                k++;
-            }
-          }
-
-          int m = k / 2;
-          getStatistics().getHisto1D("ScinID_Replica")->Fill(m);
-
-          if (m == 0)
-          getStatistics().getHisto1D("ScinID_Replica_Cut")->Fill(m);
+	  getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Deex);
+          getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_1);
+          getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_2);
+          getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_3);
+          getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_4);
 
 
 
 
- if (ID_Deex != ID_Anni_1 && ID_Deex != ID_Anni_2 && ID_Deex != ID_Anni_3)
-     {
+	//Check for the Scatter Hit Possibility
+	
+	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec;
 
-   if (ID_Anni_1 != ID_Anni_2 && ID_Anni_1 != ID_Anni_3)
-          {
+	for (uint p = 0 ; p < AnniHits.size(); p++) 
+	{
+	
+		//Loop over all hits - Assuming Primary 
+	
 
-        if (ID_Anni_2 != ID_Anni_3)
-       	       {
+		for (uint s = 0; s < AnniHits.size(); s++) 
+		{
+		
+			
+
+	if(AnniHits[p].getTime() < AnniHits[s].getTime()) //Perform Scatter Check only if S_t > P_t
+
+			{
+	
+	
+
+		double Scatij = CalScatterTest(AnniHits[p], AnniHits[s]);
+		
+		getStatistics().getHisto1D("Delta_ij_all")->Fill(Scatij);
+
+		Scat_vec.push_back({Scatij, {AnniHits[p], AnniHits[s]}});	
+		
+	
 
 
+			}
+	
+        	}
+
+	
+	}
+
+
+
+	 std::sort(Scat_vec.begin(), Scat_vec.end(), comparison3); //Sort Scatij
+
+	 getStatistics().getHisto1D("Delta_ij_least")->Fill(Scat_vec.at(0).first);
+
+	 ScatHits.push_back(Scat_vec.at(0).second.second);
+
+
+	//Seperating the probable scattered photon from the remaining Annihi hits
+
+	for (uint k = 0 ; k < AnniHits.size(); k++) 
+	{
+	
+	if(Scat_vec.at(0).second.second.getScintillator().getID() == AnniHits.at(k).getScintillator().getID())
+		{
+
+	
+		AnniHits.erase(AnniHits.begin() + k);
+
+		}
+
+	}
+
+
+
+
+	if(AnniHits.size() == 3 && ScatHits.size()== 1 && DeexHits.size() == 1)
+	{
 
 
 
@@ -518,6 +565,7 @@ bool EventCategorizer::exec() {
                     double Angle12 = Calc3DAngle(AnniHits[0], AnniHits[1], Center);
                     double Angle23 = Calc3DAngle(AnniHits[1], AnniHits[2], Center);
                     double Angle31 = Calc3DAngle(AnniHits[2], AnniHits[0], Center);
+	            double AngleDiff = (360 - (Angle12 + Angle23));
                     Angle3D.push_back({
                       Angle12,
                       {
@@ -553,7 +601,7 @@ bool EventCategorizer::exec() {
 	  double LifeTime = (Avrg_ET - CalcTOF(DeexHits[0], Center));
 	  getStatistics().getHisto1D("LifeTime_Before")->Fill(LifeTime);
 	
-	if(LifeTime < 0)
+	if(LifeTime < -5.0)
 
 	{
 
@@ -568,7 +616,7 @@ bool EventCategorizer::exec() {
 	}
 
 
-	else if(LifeTime > 0 && LifeTime < 5.0)
+	else if(LifeTime > -5.0 && LifeTime < 5.0)
 
 
 	{
@@ -595,6 +643,20 @@ bool EventCategorizer::exec() {
 	}
 
 
+	else if(LifeTime > 10.0 && LifeTime < 100.0)
+	{
+
+
+		getStatistics().getHisto1D("LifeTime_Check4")->Fill(LifeTime);
+
+ 		getStatistics().getHisto2D("Angle3D_Check4")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
+
+	}
+
+
+
 
 
 //3-D Angle Calculation - 190 Cut
@@ -618,23 +680,7 @@ bool EventCategorizer::exec() {
 
 
 
-	if(LifeTime < 0)
-
-	{
-
-
-		getStatistics().getHisto1D("LifeTime_Check4")->Fill(LifeTime);
-
- 		getStatistics().getHisto2D("Angle3D_Check4")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
-
-
-
-
-	}
-
-
-	else if(LifeTime > 0 && LifeTime < 5.0)
-
+	if(LifeTime < -5.0)
 
 	{
 
@@ -644,6 +690,21 @@ bool EventCategorizer::exec() {
  		getStatistics().getHisto2D("Angle3D_Check5")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 
 
+
+
+	}
+
+
+	else if(LifeTime > -5.0 && LifeTime < 5.0)
+
+
+	{
+
+		getStatistics().getHisto1D("LifeTime_Check6")->Fill(LifeTime);
+
+ 		getStatistics().getHisto2D("Angle3D_Check6")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
 	}
 
 
@@ -651,16 +712,125 @@ bool EventCategorizer::exec() {
 	{
 
 
-		getStatistics().getHisto1D("LifeTime_Check6")->Fill(LifeTime);
+	getStatistics().getHisto1D("LifeTime_Check7")->Fill(LifeTime);
 
- 		getStatistics().getHisto2D("Angle3D_Check6")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+ 	getStatistics().getHisto2D("Angle3D_Check7")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+	
 
 
 
 	}
 
+
+	else if(LifeTime > 10.0 && LifeTime < 100.0)
+	{
+
+
+
+
+	getStatistics().getHisto1D("LifeTime_Check8")->Fill(LifeTime);
+
+ 	getStatistics().getHisto2D("Angle3D_Check8")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
+
+
+
+
+	}
+
+
+
+
+
 	
 
+	if(LifeTime > 10.0)
+	{
+	
+	
+
+
+
+                    //Energy Calculations
+
+                    double Energy1 = CalcEnergy1(Angle12, Angle23, AngleDiff);
+                    double Energy2 = CalcEnergy2(Angle12, Angle23, AngleDiff);
+                    double Energy3 = CalcEnergy3(Angle12, Angle23, AngleDiff);
+
+       		    getStatistics().getHisto1D("Energy1")->Fill(Energy1);
+                    getStatistics().getHisto1D("Energy2")->Fill(Energy2);
+                    getStatistics().getHisto1D("Energy3")->Fill(Energy3);
+
+	            getStatistics().getHisto2D("Dalitz_Energy_12")->Fill(Energy1, Energy2);
+                    getStatistics().getHisto2D("Dalitz_Energy_23")->Fill(Energy2, Energy3);
+                    getStatistics().getHisto2D("Dalitz_Energy_31")->Fill(Energy3, Energy1);
+
+	
+
+
+			
+                    //Sorting of Calculated Energies   
+
+		    vector <pair<double,JPetHit>> Energy_Vector;
+                    Energy_Vector.push_back({Energy1, AnniHits[0]});
+                    Energy_Vector.push_back({Energy2, AnniHits[1]});
+                    Energy_Vector.push_back({Energy3, AnniHits[2]});
+                    std::sort(Energy_Vector.begin(), Energy_Vector.end(), comparison);
+
+
+
+
+
+
+
+        if (Scat_vec.at(0).second.first.getScintillator().getID() == Energy_Vector.at(2).second.getScintillator().getID()) {
+
+                              double ExpecValue1 = CalExpecValue(Scat_vec.at(0).second.first, Scat_vec.at(0).second.second, Energy_Vector.at(1).second, Center);
+
+               getStatistics().getHisto1D("ExpecValue1")->Fill(ExpecValue1);
+            getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue1);
+
+                            } else if (Scat_vec.at(0).second.first.getScintillator().getID() == Energy_Vector.at(1).second.getScintillator().getID()) {
+
+                              double ExpecValue2 = CalExpecValue(Scat_vec.at(0).second.first, Scat_vec.at(0).second.second, Energy_Vector.at(2).second, Center);
+            
+	    getStatistics().getHisto1D("ExpecValue2")->Fill(ExpecValue2);
+            getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue2);
+                            
+			   } else if (Scat_vec.at(0).second.first.getScintillator().getID() == Energy_Vector.at(0).second.getScintillator().getID()) {
+
+                              double ExpecValue3 = CalExpecValue(Scat_vec.at(0).second.first, Scat_vec.at(0).second.second,Energy_Vector.at(2).second, Center);
+                             
+ 	getStatistics().getHisto1D("ExpecValue3")->Fill(ExpecValue3);
+ 	getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue3);
+
+					
+							}
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	}
+	
 
 
 
@@ -670,26 +840,17 @@ bool EventCategorizer::exec() {
 						}
 
 
-
 					}
-					
-	
+				
 				}
 
-
 			}
+
 
 		}
 
 
 	}
-
-
-}
-
-
-
-
 
 	  DeexHits.clear();
 	  AnniHits.clear();
@@ -697,11 +858,19 @@ bool EventCategorizer::exec() {
 
 
 
-      }
+					}
+					
+	
+				}
 
-    }
 
-  }
+
+			}
+
+
+		
+
+
 
 
 else {
