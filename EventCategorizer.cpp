@@ -58,7 +58,12 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("TOT_Anni")->GetXaxis()->SetTitle("TOT_Anni [ns]");
     getStatistics().getHisto1D("TOT_Anni")->GetYaxis()->SetTitle("Counts");
 
-    /*getStatistics().createHistogram(new TH1F("TOT_Scat", "TOT_Scat",
+    getStatistics().createHistogram(new TH1F("TOT_Check", "TOT_Check",
+      101, -0.5, 100.5));
+    getStatistics().getHisto1D("TOT_Check")->GetXaxis()->SetTitle("TOT_Check [ns]");
+    getStatistics().getHisto1D("TOT_Check")->GetYaxis()->SetTitle("Counts");
+   
+ /*getStatistics().createHistogram(new TH1F("TOT_Scat", "TOT_Scat",
       101, -0.5, 100.5));
     getStatistics().getHisto1D("TOT_Scat")->GetXaxis()->SetTitle("TOT_Scat [ns]");
     getStatistics().getHisto1D("TOT_Scat")->GetYaxis()->SetTitle("Counts");
@@ -104,14 +109,6 @@ bool EventCategorizer::init() {
       40100, -200.5, 200.5));
     getStatistics().getHisto1D("Delta_ij_least")->GetXaxis()->SetTitle("#Delta_{ij} - Least [ns]");
     getStatistics().getHisto1D("Delta_ij_least")->GetYaxis()->SetTitle("Counts");
-
-
-
-
-
-
-
-
 
 
     getStatistics().createHistogram(new TH1F("DistancefromSurface", "DistancefromSurface",
@@ -454,6 +451,23 @@ bool EventCategorizer::exec() {
           getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_2);
           getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_3);
           getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_4);
+
+
+
+//TOT-double Check
+
+	  getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(DeexHits.at(0)));
+          getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(0)));
+          getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(1)));
+          getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(2)));
+          getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(3)));
+
+
+
+
+
+
+
 
 
 
