@@ -284,6 +284,72 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("ExpecValue")->GetYaxis()->SetTitle("Counts");
 
 
+//Checking Plots
+
+
+    getStatistics().createHistogram(new TH2F("Deex_Number", "Deex_Number", 11, -0.5, 10.5, 11, -0.5, 10.5));
+    getStatistics().getHisto2D("Deex_Number")->GetXaxis()->SetTitle("Event Multiplicity");
+    getStatistics().getHisto2D("Deex_Number")->GetYaxis()->SetTitle("No. of Possible Deex");
+
+
+    getStatistics().createHistogram(new TH2F("Anni_Number", "Anni_Number", 11, -0.5, 10.5, 11, -0.5, 10.5));
+    getStatistics().getHisto2D("Anni_Number")->GetXaxis()->SetTitle("Event Multiplicity");
+    getStatistics().getHisto2D("Anni_Number")->GetYaxis()->SetTitle("No. of Possible Anni");
+
+
+    getStatistics().createHistogram(new TH2F("Deex_Number_After", "Deex_Number_After", 11, -0.5, 10.5, 11, -0.5, 10.5));
+    getStatistics().getHisto2D("Deex_Number_After")->GetXaxis()->SetTitle("Event Multiplicity");
+    getStatistics().getHisto2D("Deex_Number_After")->GetYaxis()->SetTitle("No. of Possible Deex - After");
+
+
+    getStatistics().createHistogram(new TH2F("Anni_Number_After", "Anni_Number_After", 11, -0.5, 10.5, 11, -0.5, 10.5));
+    getStatistics().getHisto2D("Anni_Number_After")->GetXaxis()->SetTitle("Event Multiplicity");
+    getStatistics().getHisto2D("Anni_Number_After")->GetYaxis()->SetTitle("No. of Possible Anni");
+
+
+
+
+//0.7 [ns] - TOF Cut
+
+
+	getStatistics().createHistogram(new TH1F("TOF_Difference_avrg_Cut_07ns", "TOF_Difference_avrg_Cut_07ns",20600, -5.5, 200.5));
+    	getStatistics().getHisto1D("TOF_Difference_avrg_Cut_07ns")->GetXaxis()->SetTitle("TOF_Difference_avrg_Cut_07ns");
+    	getStatistics().getHisto1D("TOF_Difference_avrg_Cut_07ns")->GetYaxis()->SetTitle("Counts");
+
+
+
+	getStatistics().createHistogram(new TH1F("LifeTime_Before_07ns", "LifeTime_Before_07ns", 40100, -200.5, 200.5));
+        getStatistics().getHisto1D("LifeTime_Before_07ns")->SetXTitle("LifeTime_Before_07ns [ns]");
+        getStatistics().getHisto1D("LifeTime_Before_07ns")->SetYTitle("Counts");
+
+
+
+       getStatistics().createHistogram(new TH2F("Angle3D_Before_07ns", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+       getStatistics().getHisto2D("Angle3D_Before_07ns")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
+       getStatistics().getHisto2D("Angle3D_Before_07ns")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
+
+
+
+
+	getStatistics().createHistogram(new TH1F("TOF_Difference_avrg_Cut_07ns_AfterAngle", "TOF_Difference_avrg_Cut_07ns_AfterAngle",20600, -5.5, 200.5));
+    	getStatistics().getHisto1D("TOF_Difference_avrg_Cut_07ns_AfterAngle")->GetXaxis()->SetTitle("TOF_Difference_avrg_Cut_07ns_AfterAngle");
+    	getStatistics().getHisto1D("TOF_Difference_avrg_Cut_07ns_AfterAngle")->GetYaxis()->SetTitle("Counts");
+
+
+
+	getStatistics().createHistogram(new TH1F("LifeTime_Before_07ns_AfterAngle", "LifeTime_Before_07ns", 40100, -200.5, 200.5));
+        getStatistics().getHisto1D("LifeTime_Before_07ns_AfterAngle")->SetXTitle("LifeTime_Before_07ns_AfterAngle [ns]");
+        getStatistics().getHisto1D("LifeTime_Before_07ns_AfterAngle")->SetYTitle("Counts");
+
+
+
+       getStatistics().createHistogram(new TH2F("Angle3D_07ns_AfterAngle", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+       getStatistics().getHisto2D("Angle3D_07ns_AfterAngle")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
+       getStatistics().getHisto2D("Angle3D_07ns_AfterAngle")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
+
+
+
+
 
 
 
@@ -329,7 +395,7 @@ bool EventCategorizer::exec() {
 
 
 	
-      if (event.getHits().size() >= 5) {
+      if (event.getHits().size() >= 4) {
  
       getStatistics().getHisto1D("Hits")->Fill(event.getHits().size()); 
 
@@ -428,10 +494,15 @@ bool EventCategorizer::exec() {
 
 	}
 
-	//5 or more Hits
+
+getStatistics().getHisto2D("Deex_Number")->Fill(event.getHits().size(), DeexHits.size());
+getStatistics().getHisto2D("Anni_Number")->Fill(event.getHits().size(), AnniHits.size());	
 
 
-	if( DeexHits.size() == 1 && AnniHits.size() == 4)
+	//4 or more Hits
+
+
+	if( DeexHits.size() == 1 && AnniHits.size() == 3)
 	{
 
 
@@ -442,7 +513,7 @@ bool EventCategorizer::exec() {
           auto ID_Anni_1 = AnniHits[0].getScintillator().getID();
           auto ID_Anni_2 = AnniHits[1].getScintillator().getID();
           auto ID_Anni_3 = AnniHits[2].getScintillator().getID();
-	  auto ID_Anni_4 = AnniHits[3].getScintillator().getID();
+	 // auto ID_Anni_4 = AnniHits[3].getScintillator().getID();
 
 //Count Rate - ID's filling
 
@@ -450,7 +521,7 @@ bool EventCategorizer::exec() {
           getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_1);
           getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_2);
           getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_3);
-          getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_4);
+         // getStatistics().getHisto1D("ScinID_Check")->Fill(ID_Anni_4);
 
 
 
@@ -460,16 +531,17 @@ bool EventCategorizer::exec() {
           getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(0)));
           getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(1)));
           getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(2)));
-          getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(3)));
+         // getStatistics().getHisto1D("TOT_Check")->Fill(CalcTOT(AnniHits.at(3)));
+
+
+getStatistics().getHisto2D("Deex_Number_After")->Fill(event.getHits().size(), DeexHits.size());
+getStatistics().getHisto2D("Anni_Number_After")->Fill(event.getHits().size(), AnniHits.size());	
 
 
 
 
 
-
-
-
-
+/*
 
 
 	//Check for the Scatter Hit Possibility
@@ -509,8 +581,10 @@ bool EventCategorizer::exec() {
 	
 	}
 
+*/
 
 
+/*
 	 std::sort(Scat_vec.begin(), Scat_vec.end(), comparison3); //Sort Scatij
 
 	 getStatistics().getHisto1D("Delta_ij_least")->Fill(Scat_vec.at(0).first);
@@ -534,9 +608,9 @@ bool EventCategorizer::exec() {
 	}
 
 
+*/
 
-
-	if(AnniHits.size() == 3 && ScatHits.size()== 1 && DeexHits.size() == 1)
+	if(AnniHits.size() == 3 && DeexHits.size() == 1)//&& ScatHits.size()== 1 )
 	{
 
 
@@ -614,6 +688,18 @@ bool EventCategorizer::exec() {
 
 	  double LifeTime = (Avrg_ET - CalcTOF(DeexHits[0], Center));
 	  getStatistics().getHisto1D("LifeTime_Before")->Fill(LifeTime);
+
+
+	if (Scat_t1 <= 0.7) {
+
+        getStatistics().getHisto1D("TOF_Difference_avrg_Cut_07ns")->Fill(Scat_t1);
+	getStatistics().getHisto1D("LifeTime_Before_07ns")->Fill(LifeTime);
+	getStatistics().getHisto2D("Angle3D_Before_07ns")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
+	}
+
+
 	
 	if(LifeTime < -5.0)
 
@@ -692,6 +778,19 @@ bool EventCategorizer::exec() {
 
 
 
+	
+	if (Scat_t1 <= 0.7) {
+
+        getStatistics().getHisto1D("TOF_Difference_avrg_Cut_07ns_AfterAngle")->Fill(Scat_t1);
+	getStatistics().getHisto1D("LifeTime_Before_07ns_AfterAngle")->Fill(LifeTime);
+	getStatistics().getHisto2D("Angle3D_07ns_AfterAngle")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
+	}
+
+
+
+
 
 
 	if(LifeTime < -5.0)
@@ -758,7 +857,7 @@ bool EventCategorizer::exec() {
 
 
 	
-
+/*
 	if(LifeTime > 10.0)
 	{
 	
@@ -846,7 +945,7 @@ bool EventCategorizer::exec() {
 	}
 	
 
-
+	*/
 
 
 
